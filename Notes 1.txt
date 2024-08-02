@@ -1,0 +1,28 @@
+Lesson 2 Notes
+
+Generate package.json
+    npm init -y
+
+Install  express 
+    npm install express
+
+Run program 
+    node server.js or file name
+
+Install nodemon - auto saves changes
+    npm install -g nodemon
+    add ("dev" : "nodemon server.js")
+    npm run dev = runs nodemon
+    
+check localhost response
+    in browser type in "localhost:'port'"
+
+create .env file
+    put in port number
+    npm install dotenv
+
+install mongo - in backend folder
+    npm install mongodb
+
+install mongoose - in backend folder
+    npm install mongoose
