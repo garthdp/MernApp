@@ -50,8 +50,16 @@ router.delete('/:id', (req, res) => {
 })
 
 //Update book
-router.patch('/:id', (req, res) => {
-    res.json({msg: 'Update specific book'})
+router.patch('/:id', async (req, res) => {
+    const {bookTitle} = req.params
+    const {title, author, quantity} = req.body
+    try{
+        const changeBook = await Book.replaceOne({"title" : bookTitle}, {"title" : title, "author": author, "quantity" : quantity})
+        res.status(200).json(changeBook)
+    }
+    catch(error){
+        res.status(400).json({msg: 'Replace book'})
+    }
 })
 
 module.exports = router
