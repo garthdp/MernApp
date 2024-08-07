@@ -1,65 +1,22 @@
 //calling express
 const express = require('express')
-const Book = require('../models/bookModel')
+const {createBook, getBooks, getBook, updateBook, deleteBook} = require('../controllers/bookController')
 
 // create instance of router
 const router = express.Router()
 
-router.post('/', async (req, res) => {
-    const {title, author, quantity} = req.body
-    try{
-        const book = await Book.create({title, author, quantity})
-        res.status(200).json(book)
-    }
-    catch(error){
-        res.status(400).json({error: error.message})
-    }
-})
+router.post('/', createBook)
 
  // Fetch all books from the database
-router.get('/', async (req, res) => {
-    try {
-        const books = await Book.find();
-        console.log(books.toString())
-        res.status(200).json(books);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
+router.get('/', getBooks)
 
 //get one book
-router.get('/:title', async (req, res) => {
-    const {title} = req.params
-    try{
-        const book = await Book.findOne({title})
-        if (book){
-            res.status(200).json(book)
-        }
-        else{
-            res.status(404).json({message: 'Book not found'})
-        }
-    }
-    catch(error){
-        res.status(400).json({error: error.message})
-    }
-})
+router.get('/:id', getBook)
 
 //Delete book
-router.delete('/:id', (req, res) => {
-    res.json({msg: 'Delete specific book'})
-})
+router.delete('/:id', deleteBook)
 
 //Update book
-router.patch('/:id', async (req, res) => {
-    const {bookTitle} = req.params
-    const {title, author, quantity} = req.body
-    try{
-        const changeBook = await Book.replaceOne({"title" : bookTitle}, {"title" : title, "author": author, "quantity" : quantity})
-        res.status(200).json(changeBook)
-    }
-    catch(error){
-        res.status(400).json({msg: 'Replace book'})
-    }
-})
+router.patch('/:id', updateBook)
 
 module.exports = router
