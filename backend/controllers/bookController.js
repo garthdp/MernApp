@@ -10,6 +10,10 @@ const getBooks = async(req, res) => {
 const getBook = async(req, res) => {
     const {id} = req.params
 
+    if (!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({error: "Invalid id"})
+    }
+
     const book = await Book.findById(id)
     if (!book){
         return res.status(404).json({error: 'No book found'})
@@ -33,25 +37,33 @@ const createBook = async(req, res) => {
 const updateBook = async(req, res) => {
     const {id} = req.params
     const {title, author, quantity} = req.body
-    try{
-        const book = await Book.findByIdAndUpdate(id, {title, author, quantity})
-        res.status(200).json({error: 'Updated'})
+
+    if (!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({error: "Invalid id"})
     }
-    catch(error){
-        res.status(400).json({error: error.message})
+
+    const book = await Book.findByIdAndUpdate(id, {title, author, quantity})
+
+    if (!book){
+        return res.status(404).json({error: 'No book found'})
     }
+    res.status(200).json("Updated")
 }
 
 //create new book
 const deleteBook = async(req, res) => {
     const {id} = req.params
-    try{
-        const book = await Book.findByIdAndDelete(id)
-        res.status(200).json({error: 'Deleted'})
+
+    if (!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({error: "Invalid id"})
     }
-    catch(e){
-        res.status(400).json({error: e.message})
+
+    const book = await Book.findByIdAndDelete({_id: id})
+
+    if (!book){
+        return res.status(404).json({error: 'No book found'})
     }
+    res.status(200).json({status : 'Deleted'})
 }
 
 module.exports = {
