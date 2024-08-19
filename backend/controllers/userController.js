@@ -14,7 +14,15 @@ const loginUser = async(req, res) => {
 
         // after sign up, but just before reponse form server
         const token = createToken(user._id)
-        res.status(200).json({email, token})
+
+        //store token in cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 3 * 24 * 60 * 60 * 60 * 1000, //days, hours, minutes, seconds, milliseconds
+            sameSite: 'Strict'
+        })
+        res.status(200).json({email})
     }catch (error){
         res.status(400).json({error: error.message})
     }
@@ -28,13 +36,31 @@ const signupUser = async(req, res) => {
 
         // after sign up, but just before reponse form server
         const token = createToken(user._id)
-        res.status(200).json({email, token})
+
+        //store token in cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 3 * 24 * 60 * 60 * 60 * 1000, //days, hours, minutes, seconds, milliseconds
+            sameSite: 'Strict'
+        })
+        res.status(200).json({email})
     }catch (error){
         res.status(400).json({error: error.message})
     }
 }
 
+const logoutUser = async(req, res) => {
+    res.cookie('token', '', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: new Date(0),
+    })
+    res.status(200).json({msg: 'Logged out successfully'})
+}
+
 module.exports = {
     loginUser, 
-    signupUser
+    signupUser,
+    logoutUser
 }

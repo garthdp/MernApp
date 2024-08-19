@@ -26,3 +26,9 @@ install mongo - in backend folder
 
 install mongoose - in backend folder
     npm install mongoose
+
+owasp cheat sheet for security help
+
+npx create-react-app frontend - make react frontend
+
+npm install react-router-dom

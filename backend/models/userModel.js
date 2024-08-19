@@ -1,4 +1,4 @@
-
+//
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
@@ -47,26 +47,21 @@ userSchema.statics.signup = async function (email, password) {
 }
 
 // adding our own signup function
-userSchema.statics.login = async function (email, password) {
-    // validate if fields are filled
+userSchema.statics.login = async function (email, password){
     if(!email || !password){
-        throw Error('All fields must be filled')
+    throw Error('All fields must be filled')
     }
-    if(!validator.isEmail(email)){
-        throw Error('Email invalid')
+    
+    //try to find the user, not just checking if it exists. if we 
+    //can't find anyone then we throw an error
+    const user = await this.findOne({email})
+    if (!user) {
+        throw Error('Incorrect email or password')
     }
-    if(!validator.isStrongPassword(password)){
-        throw Error('Password invalid')
+    const match = await bcrypt.compare(password, user.password)
+    if(!match){
+        throw Error('Incorrect password or password')
     }
-    // validate email
-
-    // validate password
-
-    // verify
-
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(password, salt)
-    const user = await this.findOne(email, hash)
     return user
 }
 
