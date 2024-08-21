@@ -1,12 +1,9 @@
-import {Link} from "react-router-dom"
-const Navbar = () => {
+const Home = () => {
     return (
-        <header>
-            <div className="container">
-                <Link to='/'>
-                    <h1>Library</h1>
-                </Link>
-            </div>
-        </header>
+        <div className="Home">
+            <h2>Home</h2>
+        </div>
     )
 }
+
+export default Home
