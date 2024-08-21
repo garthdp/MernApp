@@ -3,8 +3,8 @@
 
 /* Layout */
 :root {
---primary: #2f00ff85; /* Purple */
---secondary: #e919de85; /* Blue */
+--primary: #2600ff85; /* Purple */
+--secondary: #00000085; /* Blue */
 --error: #d9301d; /* Red */
 --background: #ecf0f1; /* Light grey */
 --header-bg: #eee1e1; /* White */
@@ -15,6 +15,10 @@ body {
 background: var(--background);
 margin: 0;
 font-family: 'Lora', serif;
+}
+
+.home {
+  display: grid;
 }
 
 header {
@@ -49,3 +53,28 @@ border-radius: 8px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 background: #ffffff;
 }
+
+/* homepage */
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+  }
+  .book-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  }
+  .book-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+  }
+  .book-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+  }
