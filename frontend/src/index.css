@@ -78,3 +78,24 @@ background: #ffffff;
   font-size: 0.9em;
   color: #555;
   }
+
+  /* bookform */
+
+  h3{
+    color: var(--primary)
+  }
+
+  label, input {
+    display: block;
+  }
+
+  input{
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    height: 30px;
+    margin-left: 55px;
+  }
