@@ -93,9 +93,39 @@ background: #ffffff;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 200px;
+    border: 1px solid rgb(8, 8, 8);
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.1);
   }
 
-  button {
-    height: 30px;
-    margin-left: 55px;
-  }
+
+
+form button, .book-details button {
+  background: var(--primary);
+  border: 0;
+  color: white;
+  padding: 10px;
+  font-family: 'Lora', serif;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.book-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  color: #d9301d;
+}
+
+div.error {
+  padding: 10px;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0
+}

@@ -8,7 +8,7 @@ const BookForm = () => {
     
     const handleSubmit = async(e) => {
 
-        e.preventDefault() //default action is to refresh the age on submit, we do not want that
+        //e.preventDefault() //default action is to refresh the age on submit, we do not want that
 
         const book = {title, author, quantity}
 
