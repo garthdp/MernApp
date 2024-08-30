@@ -21,7 +21,7 @@ const loginUser = async(req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             maxAge: 3 * 24 * 60 * 60 * 60 * 1000, //days, hours, minutes, seconds, milliseconds
-            sameSite: 'Strict'
+            sameSite: 'Lax'//strict and none
         })
         res.status(200).json({email})
     }catch (error){

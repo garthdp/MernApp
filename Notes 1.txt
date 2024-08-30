@@ -32,3 +32,15 @@ owasp cheat sheet for security help
 npx create-react-app frontend - make react frontend
 
 npm install react-router-dom
+
+npm install https
+
+npm install path
+
+npm install fs
+
+ openssl genrsa -out key.pem 
+ openssl req -new -key key.pem -out csr.pem
+ openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
+
+ npm install csurf
