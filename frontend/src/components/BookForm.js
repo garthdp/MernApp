@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useBooksContext } from "../hooks/useBooksContext"
 
 const BookForm = () => {
+    const { dispatch } = useBooksContext()
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [quantity, setQuantity] = useState('')
@@ -12,7 +14,7 @@ const BookForm = () => {
 
         const book = {title, author, quantity}
 
-        const response = await fetch('api/books', {
+        const response = await fetch('api/books/', {
             method: 'POST',
             body: JSON.stringify(book), //converts our book to json
             headers: {
@@ -31,6 +33,7 @@ const BookForm = () => {
             setQuantity('')
             setError(null)
             console.log("New Book Added", json)
+            dispatch({type: 'CREATE_BOOK', payload: json})
         }
     }
 
