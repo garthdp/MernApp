@@ -1,7 +1,18 @@
-const BookDetails = ({book, deleteBook}) => {
+import { useBooksContext } from "../hooks/useBooksContext"
+import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
-    const handleClick = () => {
-        deleteBook(book._id)
+const BookDetails = ({book}) => {
+    const { dispatch } = useBooksContext()
+    const handleClick = async() => {
+        const response = await fetch('api/books/' + book._id, {
+            method: 'DELETE'
+        })
+
+        const json = await response.json()
+
+        if(response.ok){
+            dispatch({type: 'DELETE_BOOK', payload: json})
+        }
     }
 
     return (
@@ -9,7 +20,7 @@ const BookDetails = ({book, deleteBook}) => {
             <h4>{book.title}</h4>
             <p4><strong>Author: </strong>{book.author}</p4><br></br>
             <p4><strong>Quantity: </strong>{book.quantity}</p4><br></br>
-            <p4>{book.createdAt}</p4><br></br>
+            <p4>{formatDistanceToNow(new Date(book.createdAt), {addSuffix: true})}</p4><br></br>
             <span onClick={handleClick}>Delete</span>
         </div>
     )
