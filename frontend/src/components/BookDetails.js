@@ -18,9 +18,9 @@ const BookDetails = ({book}) => {
     return (
         <div className="book-details">
             <h4>{book.title}</h4>
-            <p4><strong>Author: </strong>{book.author}</p4><br></br>
-            <p4><strong>Quantity: </strong>{book.quantity}</p4><br></br>
-            <p4>{formatDistanceToNow(new Date(book.createdAt), {addSuffix: true})}</p4><br></br>
+            <p><strong>Author: </strong>{book.author}</p><br></br>
+            <p><strong>Quantity: </strong>{book.quantity}</p><br></br>
+            <p>{formatDistanceToNow(new Date(book.createdAt), {addSuffix: true})}</p><br></br>
             <span onClick={handleClick}>Delete</span>
         </div>
     )

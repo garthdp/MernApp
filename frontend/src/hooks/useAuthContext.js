@@ -5,7 +5,7 @@ export const useAuthContext = () => {
     const context = useContext(AuthContext)
 
     if(!context){
-        throw Error('useBooksContext must be inside a booksContextProvider')
+        throw Error('useAuthContext must be inside a authContextProvider')
     }
 
     return context

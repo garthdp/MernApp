@@ -23,7 +23,7 @@ const Home = () => {
         <div className="Home">
             <div className="books">
                 {books && books.map((book) => (
-                    <BookDetails key={book.id} book={book}/>
+                    <BookDetails key={book._id} book={book}/>
                 ))}
             </div>
             <BookForm />
