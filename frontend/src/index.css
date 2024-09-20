@@ -133,3 +133,14 @@ div.error {
 header {
   display: flex;
 }
+
+nav button{
+  background: #fff;
+  border: 0;
+  color: var(--primary);
+  padding: 6px 10px;
+  font-family: 'Lora', 'serif';
+}
+header h1{
+  cursor: pointer;
+}
